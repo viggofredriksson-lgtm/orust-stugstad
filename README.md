@@ -38,6 +38,12 @@ git push
 
 Sidan uppdateras automatiskt (tar oftast under en minut).
 
+**Viktigt vid ändringar i `script.js` eller `styles.css`:** GitHub Pages
+cachar dessa filer i webbläsaren i 10 minuter. Höj siffran i `?v=2` (i
+`index.html`, längst ner respektive i `<head>`) varje gång du ändrar någon av
+filerna, annars kan besökare (och du själv) se en gammal cachad version ett
+tag efter att ändringen är live.
+
 Vill ni ha en egen domän (t.ex. `oruststugstad.se`) senare går det att koppla
 in under repots Settings → Pages → Custom domain – hör bara av dig så hjälper
 jag till att ställa in det (då behöver canonical-URL:en och JSON-LD:t i
