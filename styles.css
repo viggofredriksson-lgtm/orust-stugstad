@@ -1,0 +1,571 @@
+/* ==========================================================================
+   Orust Stugstäd – stilar
+   Struktur: 1) variabler/reset  2) layout-grunder  3) landskap (SVG-lager)
+   4) header/nav  5) kort & knappar  6) sektioner  7) formulär  8) footer
+   9) responsivitet  10) rörelse & tillgänglighet
+   ========================================================================== */
+
+/* ---------- 1) Variabler & reset ---------- */
+:root {
+  /* Färgpalett – se README för fullständig lista med hex-koder */
+  --color-primary: #EE8B4E;
+  --color-primary-dark: #D6702F;
+  --color-text: #3A342C;
+  --color-text-soft: #6B6156;
+  --color-white: #FFFFFF;
+  --color-cream: #FFFBF5;
+  --color-border: #EFE6DA;
+
+  --color-sky: #BFE1F5;
+  --color-sky-light: #DCEFF8;
+  --color-green-back: #D3EDC9;
+  --color-green-front: #A9D9A0;
+  --color-green-footer: #7CC271;
+
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --container-width: 1100px;
+  --radius-card: 22px;
+  --radius-btn: 999px;
+  --shadow-card: 0 12px 32px -8px rgba(58, 52, 44, 0.16), 0 2px 8px rgba(58, 52, 44, 0.06);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-padding-top: 88px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  line-height: 1.6;
+  /* Ett sammanhängande himmel-landskap som löper genom hela sidan */
+  background: linear-gradient(
+    180deg,
+    #BFE1F5 0%,
+    #D9EEF9 14%,
+    #EFF7EC 34%,
+    #E9F6E0 52%,
+    #FBF3E1 74%,
+    #FCEAD3 100%
+  );
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  color: var(--color-text);
+}
+
+h1 { font-size: clamp(2.6rem, 5vw + 1rem, 4.4rem); font-weight: 700; }
+h2 { font-size: clamp(1.9rem, 3vw + 1rem, 2.6rem); text-align: center; }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 1em; color: var(--color-text-soft); }
+
+a { color: var(--color-primary-dark); }
+
+img { max-width: 100%; display: block; }
+
+.container {
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  background: var(--color-white);
+  color: var(--color-text);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-btn);
+  box-shadow: var(--shadow-card);
+  z-index: 100;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Tydlig, konsekvent fokusmarkering för tillgänglighet */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-primary-dark);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- 2) Layout-grunder ---------- */
+.section {
+  position: relative;
+  padding-block: clamp(3.5rem, 6vw, 6rem);
+  overflow: hidden;
+}
+
+/* ---------- 3) Landskap (SVG-lager) ---------- */
+/* Dekorativa landskapselement: dolda för skärmläsare (alt="" + aria-hidden),
+   eftersom de inte bär meningsbärande information – se briefens tillgänglighetskrav. */
+.landscape {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hill-divider {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: clamp(60px, 10vw, 130px);
+  margin-bottom: -2px; /* undvik hårfina glapp mellan lager */
+  opacity: 0.92;
+}
+
+.hill-divider--front {
+  margin-top: -6vw;
+}
+
+.cloud {
+  position: absolute;
+  width: 160px;
+  opacity: 0.9;
+  will-change: transform;
+}
+
+.cloud-a { top: 12%; left: -5%; width: 220px; animation: drift-right 70s linear infinite; }
+.cloud-b { top: 28%; right: -8%; width: 140px; animation: drift-left 90s linear infinite; }
+.cloud-c { top: 55%; left: 60%; width: 110px; animation: drift-right 110s linear infinite; }
+.cloud-d { top: 10%; right: 8%; width: 130px; animation: drift-left 80s linear infinite; }
+.cloud-e { top: 8%; left: 4%; width: 120px; animation: drift-right 95s linear infinite; }
+
+@keyframes drift-right {
+  from { transform: translateX(-40px); }
+  to   { transform: translateX(40px); }
+}
+@keyframes drift-left {
+  from { transform: translateX(40px); }
+  to   { transform: translateX(-40px); }
+}
+
+.rainbow {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(60vw, 460px);
+  opacity: 0.55;
+}
+
+/* ---------- 4) Header & nav ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav {
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--color-primary-dark);
+  text-decoration: none;
+}
+
+.nav-toggle {
+  display: inline-flex;
+  background: none;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+  padding: 0.4rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 0.98rem;
+}
+.nav-links a:hover { color: var(--color-primary-dark); }
+
+.nav-cta {
+  background: var(--color-primary);
+  color: var(--color-white) !important;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-btn);
+}
+.nav-cta:hover { background: var(--color-primary-dark); }
+
+/* ---------- 5) Kort & knappar ---------- */
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-btn);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+.btn-primary:hover { background: var(--color-primary-dark); }
+
+.btn-secondary {
+  background: var(--color-white);
+  color: var(--color-primary-dark);
+  border-color: var(--color-primary);
+}
+.btn-secondary:hover { background: var(--color-cream); }
+
+.btn-outline {
+  background: var(--color-white);
+  color: var(--color-text);
+  border-color: var(--color-border);
+  font-size: 0.95rem;
+}
+.btn-outline:hover { border-color: var(--color-primary); color: var(--color-primary-dark); }
+
+.btn-static { cursor: default; }
+.btn-static:hover { transform: none; }
+
+/* ---------- 6) Sektioner ---------- */
+
+/* Hero */
+.hero {
+  min-height: min(92vh, 780px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 6rem;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 720px;
+}
+
+.tagline {
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  color: var(--color-text);
+  max-width: 46ch;
+  margin-inline: auto;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.75rem;
+}
+
+/* Så funkar det */
+.steps-grid {
+  list-style: none;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  position: relative;
+  z-index: 1;
+}
+
+.step-card { text-align: center; }
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Priser */
+.section-lead {
+  text-align: center;
+  max-width: 46ch;
+  margin-inline: auto;
+}
+
+.pricing-grid {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1.3fr 1fr;
+}
+
+.price-card h3 { color: var(--color-primary-dark); }
+
+.price-desc { font-size: 0.95rem; }
+
+.price-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.price-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0;
+  border-top: 1px solid var(--color-border);
+}
+.price-list li:first-child { border-top: none; }
+
+.price-list strong {
+  color: var(--color-primary-dark);
+  white-space: nowrap;
+}
+
+.price-note {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-style: italic;
+}
+
+/* Varför oss */
+.why-grid {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.why-card { text-align: center; }
+
+.why-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.75rem;
+}
+
+/* Om oss */
+.about-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: 1fr 1.4fr;
+  align-items: center;
+}
+
+.photo-placeholder {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-card);
+  background: linear-gradient(135deg, var(--color-sky-light), var(--color-green-back));
+  border: 2px dashed var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-soft);
+  font-weight: 500;
+  box-shadow: var(--shadow-card);
+}
+
+.about-text { background: none; box-shadow: none; padding: 0; }
+
+/* Kontakt */
+.contact-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  justify-content: center;
+  margin: 2rem 0 2.5rem;
+}
+
+.contact-form {
+  max-width: 620px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-row label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.form-row input,
+.form-row textarea {
+  font: inherit;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-cream);
+  color: var(--color-text);
+}
+
+.form-row input:focus,
+.form-row textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.contact-form .btn { align-self: center; margin-top: 0.5rem; }
+
+.form-status {
+  text-align: center;
+  min-height: 1.2em;
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+
+/* ---------- 8) Footer ---------- */
+.site-footer {
+  background: var(--color-green-footer);
+  color: #223A1E;
+  padding: 2.5rem 0;
+}
+
+.footer-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.site-footer p { color: #223A1E; margin: 0; }
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links a {
+  color: #223A1E;
+  text-decoration: none;
+  font-weight: 500;
+}
+.footer-links a:hover { text-decoration: underline; }
+
+/* ---------- 9) Responsivitet (mobil-först, brytpunkter uppåt) ---------- */
+@media (max-width: 780px) {
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 1rem 1.5rem 1.5rem;
+    gap: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    display: none;
+  }
+  .nav-links.is-open { display: flex; }
+  .nav-toggle { display: inline-flex; }
+
+  .pricing-grid,
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo { max-width: 420px; margin-inline: auto; }
+}
+
+@media (min-width: 781px) {
+  .nav-toggle { display: none; }
+}
+
+/* ---------- 10) Rörelse & tillgänglighet ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hill-divider {
+    transform: none !important;
+  }
+}

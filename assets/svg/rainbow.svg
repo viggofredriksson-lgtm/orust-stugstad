@@ -1,0 +1,12 @@
+<!--
+  Orust Stugstäd – landskap: dämpad regnbåge
+  Ska användas SPARSAMT (en gång, som subtil detalj) enligt designbriefen.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" fill="none" role="img" aria-label="Dämpad regnbåge">
+  <path d="M20 200 A180 180 0 0 1 380 200" stroke="#C6B8E0" stroke-width="14" stroke-linecap="round"/>
+  <path d="M40 200 A160 160 0 0 1 360 200" stroke="#A7CDEA" stroke-width="14" stroke-linecap="round"/>
+  <path d="M60 200 A140 140 0 0 1 340 200" stroke="#B7DDB0" stroke-width="14" stroke-linecap="round"/>
+  <path d="M80 200 A120 120 0 0 1 320 200" stroke="#F7EBA8" stroke-width="14" stroke-linecap="round"/>
+  <path d="M100 200 A100 100 0 0 1 300 200" stroke="#F5CE8E" stroke-width="14" stroke-linecap="round"/>
+  <path d="M120 200 A80 80 0 0 1 280 200" stroke="#F2A6A0" stroke-width="14" stroke-linecap="round"/>
+</svg>

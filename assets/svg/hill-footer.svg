@@ -1,0 +1,6 @@
+<!--
+  Orust Stugstäd – landskap: kulle inför footer (mörkast grön, avslutar landskapet)
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220" preserveAspectRatio="none" role="img" aria-label="Mörkgrön kulle vid sidans slut">
+  <path d="M0,110 C260,180 480,60 760,120 C1040,180 1220,80 1440,140 L1440,220 L0,220 Z" fill="#7CC271"/>
+</svg>

@@ -1,0 +1,8 @@
+<!--
+  Orust Stugstäd – landskap: bakre kulle (ljusare grön)
+  Används som mjuk sektionsavdelare längre bak i landskapet (lägre kontrast, ger djup).
+  Justera path-koordinaterna nedan för att ändra kullarnas form.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220" preserveAspectRatio="none" role="img" aria-label="Mjuk grön kulle i bakgrunden">
+  <path d="M0,120 C240,40 420,180 720,110 C1020,40 1220,150 1440,90 L1440,220 L0,220 Z" fill="#D3EDC9"/>
+</svg>
