@@ -174,16 +174,20 @@
 
     var validateStep = function (stepNum) {
       var stepEl = getStepEl(stepNum);
-      var requiredRadios = Array.prototype.slice.call(stepEl.querySelectorAll('input[type="radio"][required]'));
-      var byName = {};
+      // OBS: "required" sätts (per HTML-konvention) bara på det FÖRSTA
+      // alternativet i varje radiogrupp, inte på alla. Måste därför läsa in
+      // alla radioknappar i gruppen (inte bara de med [required]) för att
+      // avgöra om något av dem är ikryssat – annars godkänns bara det
+      // allra första alternativet i varje grupp.
+      var allRadios = Array.prototype.slice.call(stepEl.querySelectorAll('input[type="radio"]'));
+      var requiredNames = {};
 
-      requiredRadios.forEach(function (radio) {
-        byName[radio.name] = byName[radio.name] || [];
-        byName[radio.name].push(radio);
+      allRadios.forEach(function (radio) {
+        if (radio.required) { requiredNames[radio.name] = true; }
       });
 
-      return Object.keys(byName).every(function (name) {
-        return byName[name].some(function (radio) { return radio.checked; });
+      return Object.keys(requiredNames).every(function (name) {
+        return allRadios.some(function (radio) { return radio.name === name && radio.checked; });
       });
     };
 
