@@ -7,6 +7,7 @@ Statisk one-pager (HTML/CSS/JS, inget byggsteg). Filer:
 - `script.js` – mobilmeny, diskret parallax, kontaktformulär (placeholder)
 - `assets/svg/` – landskapet i hero (moln, fiskmåsar, kustlinje med sjöbodar/båt), var och en i egen fil
 - `assets/img/logo.png` – er logga, används liten i nav och footer
+- `robots.txt` / `sitemap.xml` – för sökmotorer (Google m.fl.)
 
 ## Köra lokalt
 
@@ -20,15 +21,31 @@ Gå sedan till `http://localhost:8000` i webbläsaren. (Man kan även dubbelklic
 på `index.html` direkt, men en lokal server rekommenderas eftersom vissa
 webbläsare är strikta med lokala filsökvägar.)
 
-## Publicera
+## Publicerad
 
-Sajten är ren statisk HTML/CSS/JS och kan hostas gratis, t.ex.:
+Sajten är live på GitHub Pages, gratis:
 
-- **Netlify:** dra och släpp mappen på [app.netlify.com/drop](https://app.netlify.com/drop),
-  eller koppla ett GitHub-repo för automatiska uppdateringar.
-- **GitHub Pages:** pusha mappen till ett GitHub-repo, aktivera Pages i
-  repots inställningar (branch `main`, root-mapp).
-- **Vercel:** `vercel deploy` i mappen, eller koppla GitHub-repo.
+**https://viggofredriksson-lgtm.github.io/orust-stugstad/**
+
+Koden ligger i GitHub-repot [viggofredriksson-lgtm/orust-stugstad](https://github.com/viggofredriksson-lgtm/orust-stugstad).
+Varje gång ni vill publicera en ändring:
+
+```
+git add -A
+git commit -m "beskrivning av ändringen"
+git push
+```
+
+Sidan uppdateras automatiskt (tar oftast under en minut).
+
+Vill ni ha en egen domän (t.ex. `oruststugstad.se`) senare går det att koppla
+in under repots Settings → Pages → Custom domain – hör bara av dig så hjälper
+jag till att ställa in det (då behöver canonical-URL:en och JSON-LD:t i
+`index.html` också bytas till den nya domänen).
+
+Andra gratis-alternativ om ni någon gång vill byta host: **Netlify**
+(drag-och-släpp på [app.netlify.com/drop](https://app.netlify.com/drop) eller
+koppla GitHub-repot) eller **Vercel** (koppla GitHub-repot).
 
 ## Kvar att göra innan lansering
 

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://viggofredriksson-lgtm.github.io/orust-stugstad/sitemap.xml
