@@ -81,19 +81,22 @@
     var stepLabel = document.getElementById('quizStepLabel');
     var summaryEl = document.getElementById('quizSummary');
     var summaryInput = document.getElementById('serviceSummary');
-    var order = [1, 2, 3, 4];
+    var order = ['1', '2a', '3', '4'];
     var currentIndex = 0;
 
     var getStepEl = function (stepNum) {
       return quizForm.querySelector('.quiz-step[data-step="' + stepNum + '"]');
     };
 
+    /* Bytesstäd och Storstäd har olika storleks-/prisnivåer (steg "2a"
+       respektive "2b") men i övrigt samma flöde – båda går nu igenom en
+       storleksfråga, bara med olika priser bakom kulisserna. */
     var computeOrder = function () {
       var serviceType = quizForm.querySelector('input[name="serviceType"]:checked');
-      if (serviceType && serviceType.value === 'Bytesstäd') {
-        return [1, 2, 3, 4];
+      if (serviceType && serviceType.value === 'Storstäd') {
+        return ['1', '2b', '3', '4'];
       }
-      return [1, 3, 4];
+      return ['1', '2a', '3', '4'];
     };
 
     var formatKr = function (n) {
@@ -114,13 +117,8 @@
       }
 
       var serviceType = serviceTypeEl.value;
-      var basePrice = serviceType === 'Storstäd' ? 1895 : 0;
-      var serviceLabel = serviceType;
-
-      if (serviceType === 'Bytesstäd' && sizeEl) {
-        basePrice = parseInt(sizeEl.getAttribute('data-price'), 10) || 0;
-        serviceLabel = 'Bytesstäd – ' + sizeEl.value.replace(/\s*\(.*\)$/, '');
-      }
+      var basePrice = sizeEl ? (parseInt(sizeEl.getAttribute('data-price'), 10) || 0) : 0;
+      var serviceLabel = sizeEl ? serviceType + ' – ' + sizeEl.value.replace(/\s*\(.*\)$/, '') : serviceType;
 
       var akut = addonEls.some(function (el) { return el.hasAttribute('data-akut'); });
       var extras = addonEls.filter(function (el) { return !el.hasAttribute('data-akut'); });
@@ -163,7 +161,7 @@
         stepLabel.textContent = 'Steg ' + (currentIndex + 1) + ' av ' + order.length;
       }
 
-      if (stepNum === 4) {
+      if (stepNum === '4') {
         renderSummary();
       }
 
@@ -215,7 +213,7 @@
     });
 
     resetQuiz = function () {
-      order = [1, 2, 3, 4];
+      order = ['1', '2a', '3', '4'];
       currentIndex = 0;
       showStep();
     };
