@@ -1,8 +1,0 @@
-<!--
-  Orust Stugstäd – landskap: främre kulle (mörkare grön)
-  Ligger framför hill-back.svg och avgränsar sektioner tydligare.
-  Justera path-koordinaterna nedan för att ändra kullarnas form.
--->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220" preserveAspectRatio="none" role="img" aria-label="Grön kulle i förgrunden">
-  <path d="M0,150 C180,90 360,190 620,140 C900,85 1140,200 1440,130 L1440,220 L0,220 Z" fill="#A9D9A0"/>
-</svg>

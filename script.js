@@ -1,6 +1,6 @@
 /* ==========================================================================
    Orust Stugstäd – script.js
-   1) Mobilmeny  2) Diskret parallax på kullarna  3) Kontaktformulär (placeholder)
+   1) Mobilmeny  2) Diskret parallax på molnen  3) Kontaktformulär (placeholder)
    ========================================================================== */
 
 (function () {
@@ -26,9 +26,11 @@
     });
   }
 
-  /* ---------- 2) Diskret parallax på kullarna ----------
+  /* ---------- 2) Diskret parallax på molnen ----------
      Respekterar prefers-reduced-motion: om det är satt körs ingen JS-parallax
-     alls (CSS-animationerna för moln stängs redan av separat i styles.css). */
+     alls (CSS-driftanimationen för moln stängs redan av separat i styles.css).
+     Parallaxen sätter "transform", medan driftanimationen i CSS använder den
+     fristående "translate"-egenskapen – de påverkar inte varandra. */
   if (!reducedMotion) {
     var parallaxEls = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
 

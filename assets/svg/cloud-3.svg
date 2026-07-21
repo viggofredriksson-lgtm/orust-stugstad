@@ -1,6 +1,12 @@
-<!-- Orust Stugstäd – landskap: moln, variant 3 (störst, för hero) -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 110" role="img" aria-label="Vitt moln">
-  <ellipse cx="70" cy="68" rx="65" ry="32" fill="#FFFFFF"/>
-  <ellipse cx="130" cy="48" rx="52" ry="40" fill="#FFFFFF"/>
-  <ellipse cx="185" cy="70" rx="46" ry="28" fill="#FFFFFF"/>
+<!-- Orust Stugstäd – landskap: mjukt, oskarpt moln (variant 3, störst) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 240" role="img" aria-label="Mjukt moln">
+  <defs>
+    <filter id="soft3" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+  </defs>
+  <g filter="url(#soft3)" fill="#EAF0F2">
+    <ellipse cx="170" cy="130" rx="140" ry="60"/>
+    <ellipse cx="300" cy="105" rx="110" ry="68"/>
+  </g>
 </svg>

@@ -1,6 +1,17 @@
-<!-- Orust Stugstäd – landskap: moln, variant 1 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" role="img" aria-label="Vitt moln">
-  <ellipse cx="60" cy="60" rx="55" ry="30" fill="#FFFFFF"/>
-  <ellipse cx="110" cy="45" rx="45" ry="35" fill="#FFFFFF"/>
-  <ellipse cx="150" cy="65" rx="40" ry="25" fill="#FFFFFF"/>
+<!--
+  Orust Stugstäd – landskap: mjukt, oskarpt moln (variant 1)
+  Medvetet abstrakt/suddigt snarare än ett tecknat "moln-ikon"-utseende,
+  för en diskret, seriös känsla. Färgen sätts av CSS (mask + background) om
+  behov finns att ändra ton senare – just nu ren ljusblå/grå fyllning.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" role="img" aria-label="Mjukt moln">
+  <defs>
+    <filter id="soft1" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+  </defs>
+  <g filter="url(#soft1)" fill="#E7EEF3">
+    <ellipse cx="150" cy="120" rx="120" ry="55"/>
+    <ellipse cx="250" cy="100" rx="95" ry="60"/>
+  </g>
 </svg>

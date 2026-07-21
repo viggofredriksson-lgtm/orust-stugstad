@@ -1,6 +1,12 @@
-<!-- Orust Stugstäd – landskap: moln, variant 2 (mindre) -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 80" role="img" aria-label="Vitt moln">
-  <ellipse cx="45" cy="48" rx="42" ry="24" fill="#FFFFFF"/>
-  <ellipse cx="85" cy="36" rx="36" ry="28" fill="#FFFFFF"/>
-  <ellipse cx="118" cy="50" rx="30" ry="20" fill="#FFFFFF"/>
+<!-- Orust Stugstäd – landskap: mjukt, oskarpt moln (variant 2, mindre) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 170" role="img" aria-label="Mjukt moln">
+  <defs>
+    <filter id="soft2" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+  <g filter="url(#soft2)" fill="#E9F0F4">
+    <ellipse cx="110" cy="90" rx="90" ry="42"/>
+    <ellipse cx="190" cy="78" rx="70" ry="46"/>
+  </g>
 </svg>

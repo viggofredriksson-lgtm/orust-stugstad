@@ -7,10 +7,10 @@
   <meta name="description" content="Orust Stugstäd erbjuder bytesstäd, Airbnb-städ och stugstäd i hela Orust, Bohuslän. Fasta priser, noggrant utfört och bilder efter varje städ.">
   <link rel="canonical" href="https://www.oruststugstad.se/">
 
-  <!-- Google Fonts: Fraunces (rubriker) + Inter (brödtext) -->
+  <!-- Google Fonts: Instrument Serif (rubriker, ett stråk personlighet) + Inter (brödtext/UI, ren och seriös) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 
@@ -66,30 +66,28 @@
 
     <!-- ============ HERO ============ -->
     <section id="hero" class="section hero">
+      <!-- Landskap: enbart mjuka, diskret animerade molnformer (ingen regnbåge/kullar) -->
       <div class="landscape" aria-hidden="true">
-        <img class="rainbow" src="assets/svg/rainbow.svg" alt="" loading="eager">
-        <img class="cloud cloud-a" src="assets/svg/cloud-3.svg" alt="" loading="eager">
-        <img class="cloud cloud-b" src="assets/svg/cloud-1.svg" alt="" loading="eager">
-        <img class="cloud cloud-c" src="assets/svg/cloud-2.svg" alt="" loading="eager">
+        <img class="cloud cloud-a" data-parallax="0.03" src="assets/svg/cloud-1.svg" alt="" loading="eager">
+        <img class="cloud cloud-b" data-parallax="0.02" src="assets/svg/cloud-2.svg" alt="" loading="eager">
+        <img class="cloud cloud-c" data-parallax="0.04" src="assets/svg/cloud-3.svg" alt="" loading="eager">
       </div>
 
       <div class="container hero-content">
-        <h1>Orust Stugstäd</h1>
+        <p class="eyebrow">Bytesstäd på Orust</p>
+        <h1>Orust <em>Stugstäd</em></h1>
         <p class="tagline">Bytesstäd för stugor och Airbnb på Orust – fasta priser och bilder efter varje städ.</p>
         <div class="hero-actions">
           <a href="#kontakt" class="btn btn-primary">Boka städ</a>
           <a href="#priser" class="btn btn-secondary">Se priser</a>
         </div>
       </div>
-
-      <img class="hill-divider" data-parallax="0.04" src="assets/svg/hill-back.svg" alt="">
-      <img class="hill-divider hill-divider--front" data-parallax="0.08" src="assets/svg/hill-front.svg" alt="">
     </section>
 
     <!-- ============ SÅ FUNKAR DET ============ -->
-    <section id="sa-funkar" class="section steps">
+    <section id="sa-funkar" class="section steps alt">
       <div class="landscape" aria-hidden="true">
-        <img class="cloud cloud-d" src="assets/svg/cloud-2.svg" alt="" loading="lazy">
+        <img class="cloud cloud-d" data-parallax="0.025" src="assets/svg/cloud-2.svg" alt="" loading="lazy">
       </div>
       <div class="container">
         <h2>Så enkelt är det</h2>
@@ -111,7 +109,6 @@
           </li>
         </ol>
       </div>
-      <img class="hill-divider" data-parallax="0.05" src="assets/svg/hill-back.svg" alt="">
     </section>
 
     <!-- ============ PRISER ============ -->
@@ -143,11 +140,10 @@
 
         <p class="price-note">Återkommande värd? Fråga om säsongspris.</p>
       </div>
-      <img class="hill-divider" data-parallax="0.05" src="assets/svg/hill-front.svg" alt="">
     </section>
 
     <!-- ============ VARFÖR OSS ============ -->
-    <section id="varfor-oss" class="section why">
+    <section id="varfor-oss" class="section why alt">
       <div class="container">
         <h2>Varför värdar väljer oss</h2>
         <div class="why-grid">
@@ -178,7 +174,7 @@
     <!-- ============ OM OSS ============ -->
     <section id="om-oss" class="section about">
       <div class="landscape" aria-hidden="true">
-        <img class="cloud cloud-e" src="assets/svg/cloud-1.svg" alt="" loading="lazy">
+        <img class="cloud cloud-e" data-parallax="0.02" src="assets/svg/cloud-1.svg" alt="" loading="lazy">
       </div>
       <div class="container about-grid">
         <div class="about-photo">
@@ -195,11 +191,10 @@
           <p>Vi är två som bor på Orust om somrarna och startade Orust Stugstäd för att vi vet hur mycket ett välskött hus betyder – både för värden och för gästen som kliver in. Vi är noggranna, pålitliga och gör klart det vi lovar.</p>
         </div>
       </div>
-      <img class="hill-divider" data-parallax="0.05" src="assets/svg/hill-back.svg" alt="">
     </section>
 
     <!-- ============ KONTAKT ============ -->
-    <section id="kontakt" class="section contact">
+    <section id="kontakt" class="section contact alt">
       <div class="container">
         <h2>Boka eller fråga oss</h2>
 
@@ -245,7 +240,6 @@
           <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
-      <img class="hill-divider" data-parallax="0.05" src="assets/svg/hill-footer.svg" alt="">
     </section>
 
   </main>

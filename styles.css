@@ -1,6 +1,8 @@
 /* ==========================================================================
    Orust Stugstäd – stilar
-   Struktur: 1) variabler/reset  2) layout-grunder  3) landskap (SVG-lager)
+   Design: clean, seriöst, luftigt – med diskret animerade moln som enda
+   "lekfulla" inslag. Ingen regnbåge, inga tecknade kullar.
+   Struktur: 1) variabler/reset  2) layout-grunder  3) landskap (moln)
    4) header/nav  5) kort & knappar  6) sektioner  7) formulär  8) footer
    9) responsivitet  10) rörelse & tillgänglighet
    ========================================================================== */
@@ -8,33 +10,32 @@
 /* ---------- 1) Variabler & reset ---------- */
 :root {
   /* Färgpalett – se README för fullständig lista med hex-koder */
-  --color-primary: #EE8B4E;
-  --color-primary-dark: #D6702F;
-  --color-text: #3A342C;
-  --color-text-soft: #6B6156;
+  --color-primary: #E2652F;
+  --color-primary-dark: #B84E20;
+  --color-text: #1C1B19;
+  --color-text-soft: #5B564F;
   --color-white: #FFFFFF;
-  --color-cream: #FFFBF5;
-  --color-border: #EFE6DA;
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F6F4F0;
+  --color-border: #E7E3DC;
 
-  --color-sky: #BFE1F5;
-  --color-sky-light: #DCEFF8;
-  --color-green-back: #D3EDC9;
-  --color-green-front: #A9D9A0;
-  --color-green-footer: #7CC271;
+  --color-dark: #171614;
+  --color-dark-text: #EFEBE3;
+  --color-dark-text-soft: #A6A093;
 
-  --font-heading: 'Fraunces', Georgia, serif;
+  --font-heading: 'Instrument Serif', Georgia, serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
 
-  --container-width: 1100px;
-  --radius-card: 22px;
-  --radius-btn: 999px;
-  --shadow-card: 0 12px 32px -8px rgba(58, 52, 44, 0.16), 0 2px 8px rgba(58, 52, 44, 0.06);
+  --container-width: 1120px;
+  --radius-card: 14px;
+  --radius-btn: 10px;
+  --shadow-card: 0 1px 2px rgba(28, 27, 25, 0.04), 0 8px 24px -12px rgba(28, 27, 25, 0.12);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
-  scroll-padding-top: 88px;
+  scroll-padding-top: 84px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -46,31 +47,30 @@ body {
   font-family: var(--font-body);
   color: var(--color-text);
   line-height: 1.6;
-  /* Ett sammanhängande himmel-landskap som löper genom hela sidan */
-  background: linear-gradient(
-    180deg,
-    #BFE1F5 0%,
-    #D9EEF9 14%,
-    #EFF7EC 34%,
-    #E9F6E0 52%,
-    #FBF3E1 74%,
-    #FCEAD3 100%
-  );
-  background-attachment: fixed;
+  background: var(--color-bg);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3 {
   font-family: var(--font-heading);
-  font-weight: 600;
-  line-height: 1.15;
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
   margin: 0 0 0.5em;
   color: var(--color-text);
 }
 
-h1 { font-size: clamp(2.6rem, 5vw + 1rem, 4.4rem); font-weight: 700; }
-h2 { font-size: clamp(1.9rem, 3vw + 1rem, 2.6rem); text-align: center; }
-h3 { font-size: 1.25rem; }
+h1 em, h2 em { font-style: italic; color: var(--color-primary-dark); }
+
+h1 { font-size: clamp(3rem, 4vw + 1.6rem, 5.2rem); }
+h2 { font-size: clamp(2.1rem, 2.4vw + 1.3rem, 3rem); text-align: center; }
+h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.005em;
+}
 
 p { margin: 0 0 1em; color: var(--color-text-soft); }
 
@@ -82,6 +82,15 @@ img { max-width: 100%; display: block; }
   max-width: var(--container-width);
   margin-inline: auto;
   padding-inline: 1.5rem;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary-dark);
+  margin: 0 0 1rem;
 }
 
 .sr-only {
@@ -115,7 +124,7 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid var(--color-primary-dark);
+  outline: 2px solid var(--color-primary-dark);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -123,13 +132,17 @@ textarea:focus-visible {
 /* ---------- 2) Layout-grunder ---------- */
 .section {
   position: relative;
-  padding-block: clamp(3.5rem, 6vw, 6rem);
+  padding-block: clamp(4rem, 7vw, 7.5rem);
   overflow: hidden;
 }
 
-/* ---------- 3) Landskap (SVG-lager) ---------- */
-/* Dekorativa landskapselement: dolda för skärmläsare (alt="" + aria-hidden),
-   eftersom de inte bär meningsbärande information – se briefens tillgänglighetskrav. */
+.section.alt {
+  background: var(--color-bg-alt);
+}
+
+/* ---------- 3) Landskap: diskret animerade moln ---------- */
+/* Dekorativa element: dolda för skärmläsare (alt="" + aria-hidden),
+   eftersom de inte bär meningsbärande information. */
 .landscape {
   position: absolute;
   inset: 0;
@@ -138,49 +151,28 @@ textarea:focus-visible {
   z-index: 0;
 }
 
-.hill-divider {
-  position: relative;
-  z-index: 1;
-  display: block;
-  width: 100%;
-  height: clamp(60px, 10vw, 130px);
-  margin-bottom: -2px; /* undvik hårfina glapp mellan lager */
-  opacity: 0.92;
-}
-
-.hill-divider--front {
-  margin-top: -6vw;
-}
-
 .cloud {
   position: absolute;
-  width: 160px;
-  opacity: 0.9;
   will-change: transform;
+  opacity: 0.8;
 }
 
-.cloud-a { top: 12%; left: -5%; width: 220px; animation: drift-right 70s linear infinite; }
-.cloud-b { top: 28%; right: -8%; width: 140px; animation: drift-left 90s linear infinite; }
-.cloud-c { top: 55%; left: 60%; width: 110px; animation: drift-right 110s linear infinite; }
-.cloud-d { top: 10%; right: 8%; width: 130px; animation: drift-left 80s linear infinite; }
-.cloud-e { top: 8%; left: 4%; width: 120px; animation: drift-right 95s linear infinite; }
+.cloud-a { top: 8%; left: -6%; width: 340px; animation: drift-right 130s linear infinite; }
+.cloud-b { top: 32%; right: -8%; width: 260px; animation: drift-left 160s linear infinite; }
+.cloud-c { top: 58%; left: 38%; width: 300px; animation: drift-right 190s linear infinite; opacity: 0.6; }
+.cloud-d { top: 14%; right: 4%; width: 220px; animation: drift-left 150s linear infinite; opacity: 0.55; }
+.cloud-e { top: 10%; left: 2%; width: 240px; animation: drift-right 170s linear infinite; opacity: 0.55; }
 
+/* Molnen driver via den fristående "translate"-egenskapen (inte "transform"),
+   så att script.js kan animera "transform" separat för den diskreta
+   scroll-parallaxen utan att de två rörelserna krockar. */
 @keyframes drift-right {
-  from { transform: translateX(-40px); }
-  to   { transform: translateX(40px); }
+  from { translate: -30px 0; }
+  to   { translate: 30px 0; }
 }
 @keyframes drift-left {
-  from { transform: translateX(40px); }
-  to   { transform: translateX(-40px); }
-}
-
-.rainbow {
-  position: absolute;
-  top: 6%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(60vw, 460px);
-  opacity: 0.55;
+  from { translate: 30px 0; }
+  to   { translate: -30px 0; }
 }
 
 /* ---------- 4) Header & nav ---------- */
@@ -188,7 +180,7 @@ textarea:focus-visible {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border);
 }
@@ -196,7 +188,7 @@ textarea:focus-visible {
 .nav {
   max-width: var(--container-width);
   margin-inline: auto;
-  padding: 0.9rem 1.5rem;
+  padding: 1.1rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -204,9 +196,9 @@ textarea:focus-visible {
 
 .nav-logo {
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: var(--color-primary-dark);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--color-text);
   text-decoration: none;
 }
 
@@ -223,23 +215,23 @@ textarea:focus-visible {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 2rem;
   margin: 0;
   padding: 0;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: var(--color-text);
+  color: var(--color-text-soft);
   font-weight: 500;
-  font-size: 0.98rem;
+  font-size: 0.92rem;
 }
-.nav-links a:hover { color: var(--color-primary-dark); }
+.nav-links a:hover { color: var(--color-text); }
 
 .nav-cta {
-  background: var(--color-primary);
+  background: var(--color-text);
   color: var(--color-white) !important;
-  padding: 0.5rem 1.1rem;
+  padding: 0.55rem 1.15rem;
   border-radius: var(--radius-btn);
 }
 .nav-cta:hover { background: var(--color-primary-dark); }
@@ -247,6 +239,7 @@ textarea:focus-visible {
 /* ---------- 5) Kort & knappar ---------- */
 .card {
   background: var(--color-white);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
   padding: clamp(1.5rem, 3vw, 2.25rem);
@@ -257,14 +250,14 @@ textarea:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.85rem 1.75rem;
+  padding: 0.8rem 1.6rem;
   border-radius: var(--radius-btn);
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.95rem;
   text-decoration: none;
-  border: 2px solid transparent;
+  border: 1.5px solid transparent;
   cursor: pointer;
-  transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 .btn:hover { transform: translateY(-1px); }
 
@@ -275,17 +268,17 @@ textarea:focus-visible {
 .btn-primary:hover { background: var(--color-primary-dark); }
 
 .btn-secondary {
-  background: var(--color-white);
-  color: var(--color-primary-dark);
-  border-color: var(--color-primary);
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-border);
 }
-.btn-secondary:hover { background: var(--color-cream); }
+.btn-secondary:hover { border-color: var(--color-text); }
 
 .btn-outline {
   background: var(--color-white);
   color: var(--color-text);
   border-color: var(--color-border);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 .btn-outline:hover { border-color: var(--color-primary); color: var(--color-primary-dark); }
 
@@ -296,23 +289,24 @@ textarea:focus-visible {
 
 /* Hero */
 .hero {
-  min-height: min(92vh, 780px);
+  min-height: min(90vh, 760px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-top: 6rem;
+  background: linear-gradient(180deg, #FAFAF8 0%, #FFFFFF 60%);
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
   text-align: center;
-  max-width: 720px;
+  max-width: 760px;
 }
 
 .tagline {
-  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
-  color: var(--color-text);
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  color: var(--color-text-soft);
   max-width: 46ch;
   margin-inline: auto;
 }
@@ -322,13 +316,13 @@ textarea:focus-visible {
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
-  margin-top: 1.75rem;
+  margin-top: 2rem;
 }
 
 /* Så funkar det */
 .steps-grid {
   list-style: none;
-  margin: 2.5rem 0 0;
+  margin: 3rem 0 0;
   padding: 0;
   display: grid;
   gap: 1.5rem;
@@ -337,21 +331,21 @@ textarea:focus-visible {
   z-index: 1;
 }
 
-.step-card { text-align: center; }
+.step-card { text-align: left; }
 
 .step-number {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: 50%;
-  background: var(--color-primary);
-  color: var(--color-white);
-  font-family: var(--font-heading);
+  border: 1.5px solid var(--color-primary);
+  color: var(--color-primary-dark);
+  font-family: var(--font-body);
   font-weight: 700;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  margin-bottom: 1.1rem;
 }
 
 /* Priser */
@@ -362,13 +356,13 @@ textarea:focus-visible {
 }
 
 .pricing-grid {
-  margin-top: 2.5rem;
+  margin-top: 3rem;
   display: grid;
   gap: 1.5rem;
   grid-template-columns: 1.3fr 1fr;
 }
 
-.price-card h3 { color: var(--color-primary-dark); }
+.price-card h3 { color: var(--color-text); font-size: 1.15rem; }
 
 .price-desc { font-size: 0.95rem; }
 
@@ -382,37 +376,41 @@ textarea:focus-visible {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.65rem 0;
+  padding: 0.7rem 0;
   border-top: 1px solid var(--color-border);
 }
 .price-list li:first-child { border-top: none; }
 
+.price-list span { color: var(--color-text-soft); }
+
 .price-list strong {
-  color: var(--color-primary-dark);
+  color: var(--color-text);
   white-space: nowrap;
+  font-weight: 600;
 }
 
 .price-note {
   text-align: center;
-  margin-top: 1.5rem;
-  font-style: italic;
+  margin-top: 1.75rem;
+  color: var(--color-text-soft);
+  font-size: 0.95rem;
 }
 
 /* Varför oss */
 .why-grid {
-  margin-top: 2.5rem;
+  margin-top: 3rem;
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
-.why-card { text-align: center; }
+.why-card { text-align: left; }
 
 .why-icon {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 1.75rem;
+  height: 1.75rem;
   color: var(--color-primary-dark);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 /* Om oss */
@@ -420,7 +418,7 @@ textarea:focus-visible {
   position: relative;
   z-index: 1;
   display: grid;
-  gap: 2.5rem;
+  gap: 3rem;
   grid-template-columns: 1fr 1.4fr;
   align-items: center;
 }
@@ -428,17 +426,16 @@ textarea:focus-visible {
 .photo-placeholder {
   aspect-ratio: 4 / 3;
   border-radius: var(--radius-card);
-  background: linear-gradient(135deg, var(--color-sky-light), var(--color-green-back));
-  border: 2px dashed var(--color-primary);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-text-soft);
-  font-weight: 500;
-  box-shadow: var(--shadow-card);
+  font-size: 0.9rem;
 }
 
-.about-text { background: none; box-shadow: none; padding: 0; }
+.about-text { background: none; box-shadow: none; padding: 0; border: none; }
 
 /* Kontakt */
 .contact-buttons {
@@ -465,16 +462,16 @@ textarea:focus-visible {
 
 .form-row label {
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .form-row input,
 .form-row textarea {
   font: inherit;
   padding: 0.75rem 1rem;
-  border-radius: 12px;
+  border-radius: 8px;
   border: 1.5px solid var(--color-border);
-  background: var(--color-cream);
+  background: var(--color-bg-alt);
   color: var(--color-text);
 }
 
@@ -494,37 +491,38 @@ textarea:focus-visible {
 
 /* ---------- 8) Footer ---------- */
 .site-footer {
-  background: var(--color-green-footer);
-  color: #223A1E;
-  padding: 2.5rem 0;
+  background: var(--color-dark);
+  color: var(--color-dark-text);
+  padding: 3rem 0;
 }
 
 .footer-grid {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
   text-align: center;
 }
 
-.site-footer p { color: #223A1E; margin: 0; }
+.site-footer p { color: var(--color-dark-text-soft); margin: 0; font-size: 0.95rem; }
 
 .footer-links {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 1.5rem;
   justify-content: center;
   padding: 0;
   margin: 0;
 }
 
 .footer-links a {
-  color: #223A1E;
+  color: var(--color-dark-text);
   text-decoration: none;
   font-weight: 500;
+  font-size: 0.9rem;
 }
-.footer-links a:hover { text-decoration: underline; }
+.footer-links a:hover { color: var(--color-primary); }
 
 /* ---------- 9) Responsivitet (mobil-först, brytpunkter uppåt) ---------- */
 @media (max-width: 780px) {
@@ -564,8 +562,5 @@ textarea:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-  .hill-divider {
-    transform: none !important;
   }
 }
