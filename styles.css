@@ -181,22 +181,17 @@ textarea:focus-visible {
   to   { translate: -30px 0; }
 }
 
-/* Västkustdetaljer i hero: sjöbodar, båt, fiskmåsar. Sitter i sina egna
-   hörn så att de ramar in rubriken utan att tävla med den. Döljs på smala
-   mobilskärmar (se responsivitet) där det inte finns plats vid sidorna. */
-.pier {
+/* Kustlinjen: en sammanhängande scen (hav, klippor, sjöbodar, båt) som
+   löper längs hela nederkanten av hero – inte lösryckta hörn-element.
+   object-fit: cover behåller proportionerna och beskär i sidled vid behov. */
+.coastline {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: clamp(150px, 17vw, 240px);
-  z-index: 1;
-}
-
-.boat {
-  position: absolute;
-  bottom: 8%;
-  right: 5%;
-  width: clamp(80px, 9vw, 130px);
+  width: 100%;
+  height: clamp(130px, 17vw, 220px);
+  object-fit: cover;
+  object-position: center bottom;
   z-index: 1;
 }
 
@@ -611,10 +606,6 @@ textarea:focus-visible {
   }
 
   .about-photo { max-width: 420px; margin-inline: auto; }
-
-  /* Sjöbodarna och båten får inte plats vid sidan av den centrerade
-     rubriken på smala skärmar – molnen och fiskmåsarna räcker där. */
-  .pier, .boat { display: none; }
 }
 
 @media (min-width: 781px) {

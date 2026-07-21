@@ -1,0 +1,49 @@
+<!--
+  Orust Stugstäd – landskap: sammanhängande kustlinje för hero
+  EN scen i stället för lösryckta element: hav, låga klippholmar (skärgård),
+  en sjöbodsklunga med brygga på klipporna till vänster, och en segelbåt
+  som seglar på det öppna vattnet till höger. Allt delar samma horisontlinje.
+  Palett: dämpad blågrön sjö, stengrå klippor, falurött på bodarna.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 240" role="img" aria-label="Kustlinje med sjöbodar, klippor och en segelbåt">
+
+  <!-- hav -->
+  <path d="M0,170 C220,162 420,177 640,168 C880,158 1080,174 1300,165 C1420,160 1520,166 1600,164 L1600,240 L0,240 Z" fill="#BADEE7"/>
+  <path d="M0,196 C260,190 520,202 800,194 C1080,186 1340,198 1600,192 L1600,240 L0,240 Z" fill="#A2C9D6" opacity="0.6"/>
+
+  <!-- klippholme, vänster (bär sjöbodarna) -->
+  <path d="M0,240 L0,170 C40,168 70,150 110,140 C160,128 210,126 260,132 C300,137 345,149 385,161 C402,166 412,170 424,173 L424,240 Z" fill="#8CA0A9"/>
+
+  <!-- klippholme, höger (avlägsen, ger djup) -->
+  <path d="M1260,240 L1260,178 C1300,170 1340,155 1390,150 C1440,146 1490,152 1540,162 C1565,168 1585,174 1600,178 L1600,240 Z" fill="#9BAEB6"/>
+
+  <!-- liten brygga ut från klippholmen -->
+  <line x1="34" y1="173" x2="92" y2="167" stroke="#948C7E" stroke-width="3" stroke-linecap="round"/>
+  <rect x="46" y="167" width="4" height="14" fill="#948C7E"/>
+  <rect x="74" y="163" width="4" height="14" fill="#948C7E"/>
+
+  <!-- sjöbodar, grupperade på klippholmen -->
+  <g fill="#B0614C">
+    <rect x="95" y="95" width="55" height="42"/>
+    <path d="M90 95 L155 95 L122 65 Z"/>
+  </g>
+  <g fill="#8B3226">
+    <rect x="150" y="75" width="65" height="62"/>
+    <path d="M144 75 L221 75 L182 42 Z"/>
+  </g>
+  <rect x="172" y="108" width="16" height="29" fill="#FBEFE4"/>
+  <rect x="196" y="90" width="12" height="12" fill="#FBEFE4"/>
+  <g fill="#A6543F">
+    <rect x="222" y="100" width="48" height="37"/>
+    <path d="M217 100 L275 100 L246 76 Z"/>
+  </g>
+  <rect x="239" y="115" width="10" height="10" fill="#FBEFE4"/>
+
+  <!-- segelbåt på öppet vatten -->
+  <g transform="translate(740,140) scale(0.65)">
+    <path d="M20 78 Q70 100 120 78 L107 93 Q70 107 33 93 Z" fill="#8B3226"/>
+    <line x1="70" y1="76" x2="70" y2="18" stroke="#6B6156" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M70 22 L70 74 L35 74 Z" fill="#F0600F" opacity="0.9"/>
+    <path d="M70 30 L70 74 L99 70 Z" fill="#FBEFE4" opacity="0.95"/>
+  </g>
+</svg>
