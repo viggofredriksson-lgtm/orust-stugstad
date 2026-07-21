@@ -406,7 +406,7 @@ textarea:focus-visible {
   margin-top: 3rem;
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .price-card h3 { color: var(--color-text); font-size: 1.15rem; }

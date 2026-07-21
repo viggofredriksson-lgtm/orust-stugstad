@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Orust Stugstäd – bytesstäd &amp; Airbnb-städ på Orust</title>
-  <meta name="description" content="Orust Stugstäd erbjuder bytesstäd, Airbnb-städ och stugstäd i hela Orust, Bohuslän. Fasta priser, noggrant utfört och bilder efter varje städ.">
+  <title>Orust Stugstäd – städ för stugor, Airbnb och hem på Orust</title>
+  <meta name="description" content="Orust Stugstäd erbjuder bytesstäd, storstäd och hemstädning i hela Orust – inklusive Mollösund. Fasta priser, snabb bokning och bilder efter varje städ.">
   <!-- TODO: byt till en egen domän här (canonical, Open Graph-url, JSON-LD "url") den dagen ni köper en -->
   <link rel="canonical" href="https://viggofredriksson-lgtm.github.io/orust-stugstad/">
 
@@ -12,8 +12,8 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="sv_SE">
   <meta property="og:site_name" content="Orust Stugstäd">
-  <meta property="og:title" content="Orust Stugstäd – bytesstäd &amp; Airbnb-städ på Orust">
-  <meta property="og:description" content="Bytesstäd för stugor och Airbnb på Orust – fasta priser och bilder efter varje städ.">
+  <meta property="og:title" content="Orust Stugstäd – städ för stugor, Airbnb och hem på Orust">
+  <meta property="og:description" content="Bytesstäd, storstäd och hemstädning i hela Orust, inklusive Mollösund – fasta priser och bilder efter varje städ.">
   <meta property="og:url" content="https://viggofredriksson-lgtm.github.io/orust-stugstad/">
   <meta property="og:image" content="https://viggofredriksson-lgtm.github.io/orust-stugstad/assets/img/logo.png">
   <meta name="twitter:card" content="summary">
@@ -35,11 +35,17 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Orust Stugstäd",
-    "description": "Bytesstäd, Airbnb-städ och stugstäd på Orust i Bohuslän. Fasta priser och bilder efter varje städ.",
-    "areaServed": {
-      "@type": "Place",
-      "name": "Orust, Bohuslän"
-    },
+    "description": "Bytesstäd, Airbnb-städ, storstäd och hemstädning på Orust i Bohuslän, inklusive Mollösund. Fasta priser och bilder efter varje städ.",
+    "areaServed": [
+      {
+        "@type": "Place",
+        "name": "Orust, Bohuslän"
+      },
+      {
+        "@type": "Place",
+        "name": "Mollösund, Orust"
+      }
+    ],
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Orust",
@@ -49,7 +55,7 @@
     "telephone": "+46 72-442 56 02",
     "email": "viggo.fredriksson@icloud.com",
     "url": "https://viggofredriksson-lgtm.github.io/orust-stugstad/",
-    "priceRange": "995 kr–1595 kr"
+    "priceRange": "995 kr–1895 kr"
   }
   </script>
 </head>
@@ -95,9 +101,9 @@
       </div>
 
       <div class="container hero-content">
-        <p class="eyebrow">Bytesstäd på Orust</p>
+        <p class="eyebrow">Städ på Orust</p>
         <h1>Orust <em>Stugstäd</em></h1>
-        <p class="tagline">Bytesstäd för stugor och Airbnb på Orust – fasta priser och bilder efter varje städ.</p>
+        <p class="tagline">Bytesstäd, storstäd och hemstädning för stugor, Airbnb och hem på Orust – fasta priser och bilder efter varje städ.</p>
         <div class="hero-actions">
           <a href="#kontakt" class="btn btn-primary">Boka städ</a>
           <a href="#priser" class="btn btn-secondary">Se priser</a>
@@ -112,12 +118,12 @@
       </div>
       <div class="container">
         <h2>Så enkelt är det</h2>
-        <p class="section-lead">Bytesstäd av stugor och Airbnb på Orust, från bokning till nyckelfärdig städning.</p>
+        <p class="section-lead">Bytesstäd, storstäd och hemstädning på Orust, från bokning till nyckelfärdig städning.</p>
         <ol class="steps-grid">
           <li class="card step-card">
             <span class="step-number" aria-hidden="true">1</span>
             <h3>Hör av dig</h3>
-            <p>Skicka datum och adress till stugan, så ger vi dig ett fast pris.</p>
+            <p>Skicka datum och adress, så ger vi dig ett fast pris.</p>
           </li>
           <li class="card step-card">
             <span class="step-number" aria-hidden="true">2</span>
@@ -127,7 +133,7 @@
           <li class="card step-card">
             <span class="step-number" aria-hidden="true">3</span>
             <h3>Du får bilder</h3>
-            <p>När det är klart får du bilder på resultatet. Stugan är redo för nästa gäst.</p>
+            <p>När det är klart får du bilder på resultatet – redo för nästa gäst, eller bara skönt att kliva in i själv.</p>
           </li>
         </ol>
       </div>
@@ -151,6 +157,14 @@
           </div>
 
           <div class="card price-card">
+            <h3>Storstäd</h3>
+            <p class="price-desc">En grundlig helstädning av hela hemmet – perfekt inför fest, säsongsskifte eller en rejäl genomgång. Vi tar även med skåp, lister, kaklet och fönster. Bor du i Mollösund? Hos oss slipper du de långa väntetiderna som annars är vanliga där.</p>
+            <ul class="price-list">
+              <li><span>Storstäd, hela hemmet</span><strong>1 895 kr</strong></li>
+            </ul>
+          </div>
+
+          <div class="card price-card">
             <h3>Tillägg</h3>
             <ul class="price-list">
               <li><span>Bäddning + lakanstvätt, per bäddset</span><strong>200 kr</strong></li>
@@ -160,15 +174,15 @@
           </div>
         </div>
 
-        <p class="price-note">Återkommande värd? Fråga om säsongspris.</p>
+        <p class="price-note">Återkommande kund? Fråga om säsongspris.</p>
       </div>
     </section>
 
     <!-- ============ VARFÖR OSS ============ -->
     <section id="varfor-oss" class="section why alt">
       <div class="container">
-        <h2>Varför värdar väljer oss</h2>
-        <p class="section-lead">Stugstäd och Airbnb-städ på Orust utfört av två lokala som bryr sig om detaljerna.</p>
+        <h2>Varför kunder väljer oss</h2>
+        <p class="section-lead">Stugstäd, Airbnb-städ och hemstädning på Orust, utfört av två lokala som bryr sig om detaljerna.</p>
         <div class="why-grid">
           <div class="card why-card">
             <span class="why-icon-chip"><svg class="why-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg></span>
@@ -242,7 +256,7 @@
               <input type="email" id="email" name="email" autocomplete="email">
             </div>
             <div class="form-row">
-              <label for="address">Stugans adress eller ort</label>
+              <label for="address">Adress eller ort</label>
               <input type="text" id="address" name="address" required>
             </div>
           </div>
@@ -265,7 +279,7 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <img src="assets/img/logo.png" alt="Orust Stugstäd" class="footer-logo" width="44" height="44" loading="lazy">
-      <p>Orust Stugstäd – bytesstäd, Airbnb-städ och stugstäd i hela Orust, Bohuslän.</p>
+      <p>Orust Stugstäd – bytesstäd, Airbnb-städ, storstäd och hemstädning i hela Orust, inklusive Mollösund, Bohuslän.</p>
       <ul class="footer-links">
         <li><a href="#hero">Hem</a></li>
         <li><a href="#sa-funkar">Så funkar det</a></li>
