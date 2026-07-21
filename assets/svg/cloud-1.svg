@@ -1,17 +1,23 @@
 <!--
-  Orust Stugstäd – landskap: mjukt, oskarpt moln (variant 1)
-  Medvetet abstrakt/suddigt snarare än ett tecknat "moln-ikon"-utseende,
-  för en diskret, seriös känsla. Färgen sätts av CSS (mask + background) om
-  behov finns att ändra ton senare – just nu ren ljusblå/grå fyllning.
+  Orust Stugstäd – landskap: moln (variant 1, störst)
+  Två lager: en mjuk blåtonad bas (syns tydligt mot vit/ljus bakgrund) och
+  en vitare, mindre suddig "höjdpunkt" ovanpå för lite volym/lekfullhet.
 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" role="img" aria-label="Mjukt moln">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260" role="img" aria-label="Moln">
   <defs>
-    <filter id="soft1" x="-40%" y="-40%" width="180%" height="180%">
-      <feGaussianBlur stdDeviation="22"/>
+    <filter id="base1" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="13"/>
+    </filter>
+    <filter id="hi1" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="7"/>
     </filter>
   </defs>
-  <g filter="url(#soft1)" fill="#E7EEF3">
-    <ellipse cx="150" cy="120" rx="120" ry="55"/>
-    <ellipse cx="250" cy="100" rx="95" ry="60"/>
+  <g filter="url(#base1)" fill="#BFE0F5">
+    <ellipse cx="180" cy="150" rx="140" ry="62"/>
+    <ellipse cx="300" cy="120" rx="115" ry="72"/>
+    <ellipse cx="390" cy="155" rx="90" ry="55"/>
+  </g>
+  <g filter="url(#hi1)" fill="#FFFFFF" opacity="0.85">
+    <ellipse cx="270" cy="110" rx="80" ry="42"/>
   </g>
 </svg>
