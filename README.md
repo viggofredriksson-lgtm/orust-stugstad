@@ -4,7 +4,7 @@ Statisk one-pager (HTML/CSS/JS, inget byggsteg). Filer:
 
 - `index.html` – all text och struktur
 - `styles.css` – all styling (palett som CSS-variabler högst upp i filen)
-- `script.js` – mobilmeny, diskret parallax, kontaktformulär (placeholder)
+- `script.js` – mobilmeny, diskret parallax, Städguiden, kontaktformulär (skickas till Formspree)
 - `assets/svg/` – landskapet i hero (moln, fiskmåsar, kustlinje med sjöbodar/båt), var och en i egen fil
 - `assets/img/logo.png` – er logga, används liten i nav och footer
 - `robots.txt` / `sitemap.xml` – för sökmotorer (Google m.fl.)
@@ -53,13 +53,17 @@ Andra gratis-alternativ om ni någon gång vill byta host: **Netlify**
 (drag-och-släpp på [app.netlify.com/drop](https://app.netlify.com/drop) eller
 koppla GitHub-repot) eller **Vercel** (koppla GitHub-repot).
 
-## Kvar att göra innan lansering
+## Kontaktformulär
 
-Sök efter `TODO` i koden – varje ställe är kommenterat:
+Kopplat till Formspree: [formspree.io/f/mojglrwb](https://formspree.io/f/mojglrwb).
+Inskickningar går till mailen som är kopplad till det Formspree-kontot, och
+går även att se i Formspree-dashboarden. Vill ni ha SMS-avisering också,
+koppla en Zap (Formspree → SMS by Zapier, eller via webhook om Formspree inte
+dyker upp som egen app i Zapier).
 
-1. **Kontaktformuläret** (`index.html`, sektion `#kontakt`, och `script.js`) –
-   koppla till t.ex. [Formspree](https://formspree.io) eller mail.
-2. **JSON-LD url** (`index.html`, `<head>`) – uppdatera `url` när ni har en
+## Kvar att göra
+
+1. **JSON-LD url** (`index.html`, `<head>`) – uppdatera `url` när ni har en
    riktig domän (telefon och mail är redan ifyllda).
-3. **Loggan** har låg upplösning – har ni en skarpare/vektorversion senare
+2. **Loggan** har låg upplösning – har ni en skarpare/vektorversion senare
    (t.ex. SVG) är det bara att byta ut `assets/img/logo.png`.

@@ -1,7 +1,7 @@
 /* ==========================================================================
    Orust Stugstäd – script.js
    1) Mobilmeny  2) Diskret parallax på molnen  3) Städguiden (enkät i
-   kontaktformuläret)  4) Kontaktformulär (placeholder-inskickning)
+   kontaktformuläret)  4) Kontaktformulär (skickas till Formspree)
    ========================================================================== */
 
 (function () {
@@ -228,18 +228,38 @@
   }
 
   /* ---------- 4) KONTAKTFORMULÄR ----------
-     Just nu visas bara ett tack-meddelande lokalt i webbläsaren – inget
-     skickas någonstans. När formuläret är kopplat till Formspree (se TODO
-     i index.html, sök på "Koppla formuläret") ska blocket nedan tas bort
-     så att formuläret får posta som vanligt till action-URL:en. */
+     Skickas till Formspree via fetch() (Accept: application/json) i stället
+     för en vanlig sidladdning, så vi kan visa resultatet direkt på samma
+     sida utan att navigera bort från Städguiden. action-attributet i
+     index.html pekar redan på rätt Formspree-URL och används som reserv om
+     JS inte skulle köras. */
   var status = document.getElementById('formStatus');
+  var submitBtn = quizForm ? quizForm.querySelector('button[type="submit"]') : null;
 
   if (quizForm && status) {
     quizForm.addEventListener('submit', function (event) {
       event.preventDefault();
-      status.textContent = 'Tack! Din förfrågan är mottagen (demo – formuläret är ännu inte kopplat till mail).';
-      quizForm.reset();
-      if (resetQuiz) { resetQuiz(); }
+
+      if (submitBtn) { submitBtn.disabled = true; }
+      status.textContent = 'Skickar…';
+
+      fetch(quizForm.action, {
+        method: 'POST',
+        body: new FormData(quizForm),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          status.textContent = 'Tack! Din förfrågan är mottagen – vi hör av oss så snart vi kan.';
+          quizForm.reset();
+          if (resetQuiz) { resetQuiz(); }
+        } else {
+          status.textContent = 'Något gick fel när förfrågan skulle skickas. Ring eller maila oss gärna direkt istället.';
+        }
+      }).catch(function () {
+        status.textContent = 'Något gick fel när förfrågan skulle skickas. Ring eller maila oss gärna direkt istället.';
+      }).finally(function () {
+        if (submitBtn) { submitBtn.disabled = false; }
+      });
     });
   }
 })();

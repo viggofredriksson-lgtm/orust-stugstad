@@ -233,14 +233,13 @@
           </ul>
         </div>
 
-        <form class="card contact-form quiz-form" id="contactForm" action="#" method="POST">
+        <form class="card contact-form quiz-form" id="contactForm" action="https://formspree.io/f/mojglrwb" method="POST">
           <!--
-            TODO: Koppla formuläret till t.ex. Formspree eller mail:
-            1) Skapa ett formulär på https://formspree.io och byt ut action="#" ovan
-               mot action="https://formspree.io/f/DITT_FORM_ID".
-            2) Ta bort (eller kommentera bort) submit-hanteringen i script.js
-               (avsnittet märkt "KONTAKTFORMULÄR") så att formuläret postar direkt
-               till Formspree istället för att bara visa ett tack-meddelande lokalt.
+            Kopplat till Formspree (skickas till mailen ni angav när ni skapade
+            formuläret på formspree.io). script.js skickar in det via fetch()
+            (avsnittet märkt "KONTAKTFORMULÄR") så sidan inte laddar om –
+            action-attributet ovan är bara en reserv om JS av någon anledning
+            inte körs.
             OBS: fältet "serviceSummary" nedan är dolt och fylls i automatiskt av
             script.js (avsnittet märkt "STÄDGUIDEN") med en sammanfattning av vad
             besökaren svarat – den följer med i inskickningen så ni slipper fråga.
@@ -397,6 +396,6 @@
 
   <!-- ?v= höjs varje gång script.js ändras, så att webbläsare/mobiler inte
        visar en cachad, gammal version av filen (GitHub Pages cachar den 10 min). -->
-  <script src="script.js?v=2" defer></script>
+  <script src="script.js?v=3" defer></script>
 </body>
 </html>
