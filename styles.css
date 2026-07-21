@@ -412,6 +412,7 @@ textarea:focus-visible {
 .price-card h3 { color: var(--color-text); font-size: 1.15rem; }
 
 .price-desc { font-size: 0.95rem; }
+.price-desc strong { color: var(--color-text); }
 
 .price-list {
   list-style: none;
