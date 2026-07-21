@@ -53,13 +53,22 @@ Andra gratis-alternativ om ni någon gång vill byta host: **Netlify**
 (drag-och-släpp på [app.netlify.com/drop](https://app.netlify.com/drop) eller
 koppla GitHub-repot) eller **Vercel** (koppla GitHub-repot).
 
-## Kontaktformulär
+## Kontaktformulär & aviseringar
 
-Kopplat till Formspree: [formspree.io/f/mojglrwb](https://formspree.io/f/mojglrwb).
-Inskickningar går till mailen som är kopplad till det Formspree-kontot, och
-går även att se i Formspree-dashboarden. Vill ni ha SMS-avisering också,
-koppla en Zap (Formspree → SMS by Zapier, eller via webhook om Formspree inte
-dyker upp som egen app i Zapier).
+Varje inskickning gör två saker samtidigt (i `script.js`, sök på "KONTAKTFORMULÄR"):
+
+1. **Skickas till Formspree** ([formspree.io/f/mojglrwb](https://formspree.io/f/mojglrwb))
+   – ni får mail, och kan se alla inskickningar i Formspree-dashboarden.
+2. **Skickar en gratis push-notis direkt från sajten via [ntfy.sh](https://ntfy.sh)**
+   – inget Zapier, inget konto, ingen mellanhand. Ämnesnamnet står i
+   `NTFY_TOPIC` högst upp i "KONTAKTFORMULÄR"-avsnittet i `script.js`.
+   Installera appen "ntfy" (gratis, iOS/Android) och prenumerera på samma
+   ämnesnamn för att få notiserna på mobilen.
+
+**Byt ämnesnamn:** `NTFY_TOPIC` i `script.js` är just nu ett exempel
+(`oruststugstad-bokning-7x2k`). Ämnesnamn på ntfy.sh är offentliga om man
+känner till dem – välj gärna ett eget, svårgissat namn och uppdatera samma
+namn i ntfy-appen.
 
 ## Kvar att göra
 

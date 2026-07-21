@@ -232,7 +232,35 @@
      för en vanlig sidladdning, så vi kan visa resultatet direkt på samma
      sida utan att navigera bort från Städguiden. action-attributet i
      index.html pekar redan på rätt Formspree-URL och används som reserv om
-     JS inte skulle köras. */
+     JS inte skulle köras.
+
+     Utöver Formspree skickas samtidigt en gratis push-notis direkt från
+     sajten via ntfy.sh (inget konto, ingen Zapier-mellanhand – bara en vanlig
+     webbförfrågan). TODO: byt NTFY_TOPIC nedan mot ert eget, hemliga
+     ämnesnamn (samma som ni prenumererar på i ntfy-appen). Ämnesnamn på
+     ntfy.sh är offentliga om man känner till dem, så välj något som inte
+     går att gissa – annars kan i princip vem som helst skicka notiser dit. */
+  var NTFY_TOPIC = 'oruststugstad-bokning-7x2k';
+
+  var notifyNtfy = function (formEl) {
+    var name = (formEl.querySelector('#name') || {}).value || '';
+    var phone = (formEl.querySelector('#phone') || {}).value || '';
+    var summary = (formEl.querySelector('#serviceSummary') || {}).value || '';
+    var message = 'Namn: ' + name + '\nTelefon: ' + phone + (summary ? '\n' + summary : '');
+
+    fetch('https://ntfy.sh/' + NTFY_TOPIC, {
+      method: 'POST',
+      body: message,
+      // OBS: HTTP-headervärden får bara innehålla ISO-8859-1-tecken. Ett
+      // "–" (halvt tankstreck) orsakade en TypeError här tidigare trots att
+      // å/ä/ö är okej – därför vanligt bindestreck i titeln, inte tankstreck.
+      headers: { 'Title': 'Ny forfragan - Orust Stugstad' }
+    }).catch(function () {
+      // Tyst fel: en missad push-notis ska aldrig störa själva bokningen –
+      // Formspree-mailet är alltid den pålitliga huvudvägen.
+    });
+  };
+
   var status = document.getElementById('formStatus');
   var submitBtn = quizForm ? quizForm.querySelector('button[type="submit"]') : null;
 
@@ -250,6 +278,7 @@
       }).then(function (response) {
         if (response.ok) {
           status.textContent = 'Tack! Din förfrågan är mottagen – vi hör av oss så snart vi kan.';
+          notifyNtfy(quizForm);
           quizForm.reset();
           if (resetQuiz) { resetQuiz(); }
         } else {
