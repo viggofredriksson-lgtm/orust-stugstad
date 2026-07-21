@@ -32,8 +32,8 @@
       "addressRegion": "Västra Götaland",
       "addressCountry": "SE"
     },
-    "telephone": "+46 70-XXX XX XX",
-    "email": "hej@oruststugstad.se",
+    "telephone": "+46 72-442 56 02",
+    "email": "viggo.fredriksson@icloud.com",
     "url": "https://www.oruststugstad.se",
     "priceRange": "995 kr–1595 kr"
   }
@@ -200,16 +200,25 @@
 
     <!-- ============ KONTAKT ============ -->
     <section id="kontakt" class="section contact alt">
-      <div class="container">
-        <h2>Boka eller fråga oss</h2>
+      <div class="container contact-layout">
 
-        <div class="contact-buttons">
-          <!-- TODO: byt ut telefonnummer nedan (både i href och synlig text) -->
-          <a href="tel:+4670XXXXXXX" class="btn btn-outline">Ring 07X-XXX XX XX</a>
-          <!-- TODO: byt ut mailadress nedan (både i href och synlig text) -->
-          <a href="mailto:hej@oruststugstad.se" class="btn btn-outline">Maila hej@oruststugstad.se</a>
-          <!-- TODO: byt ut Swish-nummer -->
-          <span class="btn btn-outline btn-static">Swish 123 XXX XX XX</span>
+        <div class="contact-intro">
+          <h2>Boka eller fråga oss</h2>
+          <p>Skicka en förfrågan i formuläret, eller hör av dig direkt – vi svarar snabbt.</p>
+          <ul class="contact-links">
+            <li>
+              <a href="tel:+46724425602">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 4h3l1.5 4-2 1.5a11 11 0 0 0 5.5 5.5L16 13l4 1.5v3a2 2 0 0 1-2 2C10.5 19.5 4.5 13.5 4.5 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                072-442 56 02
+              </a>
+            </li>
+            <li>
+              <a href="mailto:viggo.fredriksson@icloud.com">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m4.5 6.5 7.5 6 7.5-6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                viggo.fredriksson@icloud.com
+              </a>
+            </li>
+          </ul>
         </div>
 
         <form class="card contact-form" id="contactForm" action="#" method="POST">
@@ -221,25 +230,29 @@
                (avsnittet märkt "KONTAKTFORMULÄR") så att formuläret postar direkt
                till Formspree istället för att bara visa ett tack-meddelande lokalt.
           -->
-          <div class="form-row">
-            <label for="name">Namn</label>
-            <input type="text" id="name" name="name" autocomplete="name" required>
+          <div class="form-pair">
+            <div class="form-row">
+              <label for="name">Namn</label>
+              <input type="text" id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="form-row">
+              <label for="contactInfo">Telefon eller mail</label>
+              <input type="text" id="contactInfo" name="contactInfo" autocomplete="email" required>
+            </div>
           </div>
-          <div class="form-row">
-            <label for="contactInfo">Telefon eller mail</label>
-            <input type="text" id="contactInfo" name="contactInfo" autocomplete="email" required>
-          </div>
-          <div class="form-row">
-            <label for="address">Stugans adress eller ort</label>
-            <input type="text" id="address" name="address" required>
-          </div>
-          <div class="form-row">
-            <label for="date">Önskat datum</label>
-            <input type="date" id="date" name="date">
+          <div class="form-pair">
+            <div class="form-row">
+              <label for="address">Stugans adress eller ort</label>
+              <input type="text" id="address" name="address" required>
+            </div>
+            <div class="form-row">
+              <label for="date">Önskat datum</label>
+              <input type="date" id="date" name="date">
+            </div>
           </div>
           <div class="form-row">
             <label for="message">Meddelande</label>
-            <textarea id="message" name="message" rows="4"></textarea>
+            <textarea id="message" name="message" rows="3"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Skicka förfrågan</button>
           <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>

@@ -35,7 +35,6 @@ Sök efter `TODO` i koden – varje ställe är kommenterat:
 
 1. **Kontaktformuläret** (`index.html`, sektion `#kontakt`, och `script.js`) –
    koppla till t.ex. [Formspree](https://formspree.io) eller mail.
-2. **Telefon, mail och Swish** – byt platshållarna i kontaktsektionen.
-3. **Foto på er två** – byt platshållaren i "Om oss"-sektionen mot ett riktigt foto.
-4. **JSON-LD** (`index.html`, `<head>`) – uppdatera telefonnummer/mail/url när
-   ni har en riktig domän.
+2. **Foto på er två** – byt platshållaren i "Om oss"-sektionen mot ett riktigt foto.
+3. **JSON-LD url** (`index.html`, `<head>`) – uppdatera `url` när ni har en
+   riktig domän (telefon och mail är redan ifyllda).
