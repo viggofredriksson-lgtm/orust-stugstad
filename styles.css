@@ -231,11 +231,22 @@ textarea:focus-visible {
 }
 
 .nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   font-family: var(--font-heading);
   font-style: italic;
   font-size: 1.4rem;
   color: var(--color-text);
   text-decoration: none;
+}
+
+/* Loggan har låg upplösning i sig själv – hålls därför alltid liten så att
+   den bara läses som en liten emblem-prick, inte ett skarpt fokusobjekt. */
+.nav-logo img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 .nav-toggle {
@@ -459,30 +470,6 @@ textarea:focus-visible {
   color: var(--color-primary-dark);
 }
 
-/* Om oss */
-.about-grid {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: 3rem;
-  grid-template-columns: 1fr 1.4fr;
-  align-items: center;
-}
-
-.photo-placeholder {
-  aspect-ratio: 4 / 3;
-  border-radius: var(--radius-card);
-  background: var(--color-bg-alt);
-  border: 1px solid var(--color-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-soft);
-  font-size: 0.9rem;
-}
-
-.about-text { background: none; box-shadow: none; padding: 0; border: none; }
-
 /* Kontakt – asymmetrisk tvåspaltslayout (intro + direktkontakt till vänster,
    formulär till höger) i stället för centrerade knappar ovanför en boxad
    formulärkolumn, och understrukna fält i stället för "ifyllningsrutor". */
@@ -591,6 +578,12 @@ textarea:focus-visible {
   text-align: center;
 }
 
+.footer-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
 .site-footer p { color: var(--color-dark-text-soft); margin: 0; font-size: 0.95rem; }
 
 .footer-links {
@@ -631,7 +624,6 @@ textarea:focus-visible {
   .nav-toggle { display: inline-flex; }
 
   .pricing-grid,
-  .about-grid,
   .contact-layout {
     grid-template-columns: 1fr;
   }
@@ -639,8 +631,6 @@ textarea:focus-visible {
   .form-pair {
     grid-template-columns: 1fr;
   }
-
-  .about-photo { max-width: 420px; margin-inline: auto; }
 }
 
 @media (min-width: 781px) {

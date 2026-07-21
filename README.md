@@ -5,7 +5,8 @@ Statisk one-pager (HTML/CSS/JS, inget byggsteg). Filer:
 - `index.html` – all text och struktur
 - `styles.css` – all styling (palett som CSS-variabler högst upp i filen)
 - `script.js` – mobilmeny, diskret parallax, kontaktformulär (placeholder)
-- `assets/svg/` – landskapets kullar, moln och regnbåge, var och en i egen fil
+- `assets/svg/` – landskapet i hero (moln, fiskmåsar, kustlinje med sjöbodar/båt), var och en i egen fil
+- `assets/img/logo.png` – er logga, används liten i nav och footer
 
 ## Köra lokalt
 
@@ -35,6 +36,7 @@ Sök efter `TODO` i koden – varje ställe är kommenterat:
 
 1. **Kontaktformuläret** (`index.html`, sektion `#kontakt`, och `script.js`) –
    koppla till t.ex. [Formspree](https://formspree.io) eller mail.
-2. **Foto på er två** – byt platshållaren i "Om oss"-sektionen mot ett riktigt foto.
-3. **JSON-LD url** (`index.html`, `<head>`) – uppdatera `url` när ni har en
+2. **JSON-LD url** (`index.html`, `<head>`) – uppdatera `url` när ni har en
    riktig domän (telefon och mail är redan ifyllda).
+3. **Loggan** har låg upplösning – har ni en skarpare/vektorversion senare
+   (t.ex. SVG) är det bara att byta ut `assets/img/logo.png`.
