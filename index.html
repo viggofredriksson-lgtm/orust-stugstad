@@ -231,7 +231,7 @@
           </ul>
         </div>
 
-        <form class="card contact-form" id="contactForm" action="#" method="POST">
+        <form class="card contact-form quiz-form" id="contactForm" action="#" method="POST">
           <!--
             TODO: Koppla formuläret till t.ex. Formspree eller mail:
             1) Skapa ett formulär på https://formspree.io och byt ut action="#" ovan
@@ -239,36 +239,117 @@
             2) Ta bort (eller kommentera bort) submit-hanteringen i script.js
                (avsnittet märkt "KONTAKTFORMULÄR") så att formuläret postar direkt
                till Formspree istället för att bara visa ett tack-meddelande lokalt.
+            OBS: fältet "serviceSummary" nedan är dolt och fylls i automatiskt av
+            script.js (avsnittet märkt "STÄDGUIDEN") med en sammanfattning av vad
+            besökaren svarat – den följer med i inskickningen så ni slipper fråga.
           -->
-          <div class="form-pair">
-            <div class="form-row">
-              <label for="name">Namn</label>
-              <input type="text" id="name" name="name" autocomplete="name" required>
+
+          <div class="quiz-progress" aria-hidden="true"><span class="quiz-progress-bar" id="quizProgressBar"></span></div>
+          <p class="quiz-step-label" id="quizStepLabel">Steg 1 av 4</p>
+
+          <fieldset class="quiz-step" data-step="1">
+            <legend>Vad behöver du hjälp med?</legend>
+            <div class="quiz-options">
+              <label class="quiz-option">
+                <input type="radio" name="serviceType" value="Bytesstäd" required>
+                <span class="quiz-option-text"><span class="quiz-option-title">Bytesstäd</span><span class="quiz-option-desc">Städning mellan gäster – stuga eller Airbnb</span></span>
+              </label>
+              <label class="quiz-option">
+                <input type="radio" name="serviceType" value="Storstäd">
+                <span class="quiz-option-text"><span class="quiz-option-title">Storstäd</span><span class="quiz-option-desc">Grundlig helstädning av hela hemmet</span></span>
+              </label>
+            </div>
+            <div class="quiz-nav quiz-nav--start">
+              <button type="button" class="btn btn-primary quiz-next">Nästa</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="quiz-step" data-step="2">
+            <legend>Hur stor är ytan?</legend>
+            <div class="quiz-options">
+              <label class="quiz-option">
+                <input type="radio" name="size" value="Upp till 60 m² (995 kr)" data-price="995" required>
+                <span class="quiz-option-text"><span class="quiz-option-title">Upp till 60 m²</span><span class="quiz-option-desc">995 kr</span></span>
+              </label>
+              <label class="quiz-option">
+                <input type="radio" name="size" value="60–100 m² (1 295 kr)" data-price="1295">
+                <span class="quiz-option-text"><span class="quiz-option-title">60–100 m²</span><span class="quiz-option-desc">1 295 kr</span></span>
+              </label>
+              <label class="quiz-option">
+                <input type="radio" name="size" value="Över 100 m² (1 595 kr)" data-price="1595">
+                <span class="quiz-option-text"><span class="quiz-option-title">Över 100 m²</span><span class="quiz-option-desc">1 595 kr</span></span>
+              </label>
+            </div>
+            <div class="quiz-nav">
+              <button type="button" class="btn btn-secondary quiz-back">Tillbaka</button>
+              <button type="button" class="btn btn-primary quiz-next">Nästa</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="quiz-step" data-step="3">
+            <legend>Vill du lägga till något? <span class="quiz-optional">(valfritt)</span></legend>
+            <div class="quiz-options">
+              <label class="quiz-option">
+                <input type="checkbox" name="addon" value="Bäddning + lakanstvätt (200 kr/bäddset)" data-price="200">
+                <span class="quiz-option-text"><span class="quiz-option-title">Bäddning + lakanstvätt</span><span class="quiz-option-desc">200 kr per bäddset</span></span>
+              </label>
+              <label class="quiz-option">
+                <input type="checkbox" name="addon" value="Fönsterputs (från 300 kr)" data-price="300">
+                <span class="quiz-option-text"><span class="quiz-option-title">Fönsterputs</span><span class="quiz-option-desc">från 300 kr</span></span>
+              </label>
+              <label class="quiz-option">
+                <input type="checkbox" name="addon" value="Akutstäd samma dag (+30% på grundpriset)" data-akut="1">
+                <span class="quiz-option-text"><span class="quiz-option-title">Akutstäd samma dag</span><span class="quiz-option-desc">+30 % på grundpriset</span></span>
+              </label>
+            </div>
+            <div class="quiz-nav">
+              <button type="button" class="btn btn-secondary quiz-back">Tillbaka</button>
+              <button type="button" class="btn btn-primary quiz-next">Nästa</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="quiz-step" data-step="4">
+            <legend>Dina uppgifter</legend>
+
+            <div class="quiz-summary" id="quizSummary" aria-live="polite"></div>
+
+            <input type="hidden" name="serviceSummary" id="serviceSummary">
+
+            <div class="form-pair">
+              <div class="form-row">
+                <label for="name">Namn</label>
+                <input type="text" id="name" name="name" autocomplete="name" required>
+              </div>
+              <div class="form-row">
+                <label for="phone">Telefonnummer</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+              </div>
+            </div>
+            <div class="form-pair">
+              <div class="form-row">
+                <label for="email">Mail (valfritt)</label>
+                <input type="email" id="email" name="email" autocomplete="email">
+              </div>
+              <div class="form-row">
+                <label for="address">Adress eller ort</label>
+                <input type="text" id="address" name="address" required>
+              </div>
             </div>
             <div class="form-row">
-              <label for="phone">Telefonnummer</label>
-              <input type="tel" id="phone" name="phone" autocomplete="tel" required>
-            </div>
-          </div>
-          <div class="form-pair">
-            <div class="form-row">
-              <label for="email">Mail (valfritt)</label>
-              <input type="email" id="email" name="email" autocomplete="email">
+              <label for="date">Önskat datum</label>
+              <input type="date" id="date" name="date">
             </div>
             <div class="form-row">
-              <label for="address">Adress eller ort</label>
-              <input type="text" id="address" name="address" required>
+              <label for="message">Meddelande (valfritt)</label>
+              <textarea id="message" name="message" rows="3"></textarea>
             </div>
-          </div>
-          <div class="form-row">
-            <label for="date">Önskat datum</label>
-            <input type="date" id="date" name="date">
-          </div>
-          <div class="form-row">
-            <label for="message">Meddelande</label>
-            <textarea id="message" name="message" rows="3"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Skicka förfrågan</button>
+
+            <div class="quiz-nav">
+              <button type="button" class="btn btn-secondary quiz-back">Tillbaka</button>
+              <button type="submit" class="btn btn-primary">Skicka förfrågan</button>
+            </div>
+          </fieldset>
+
           <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
         </form>
       </div>

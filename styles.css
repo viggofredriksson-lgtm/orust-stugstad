@@ -568,6 +568,135 @@ textarea:focus-visible {
   font-weight: 600;
 }
 
+/* Städguiden: en stegvis enkät inbyggd i kontaktformuläret.
+   Progressiv förbättring – utan JS visas alla steg samtidigt som ett vanligt
+   långt formulär (fortfarande fullt ifyllbart/skickbart); klassen "js-ready"
+   sätts av script.js och är det som aktiverar stegvisningen. */
+.quiz-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--color-bg-alt);
+  overflow: hidden;
+}
+
+.quiz-progress-bar {
+  display: block;
+  height: 100%;
+  width: 25%;
+  background: var(--color-primary);
+  transition: width 0.25s ease;
+}
+
+.quiz-step-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+  margin: 0.75rem 0 0;
+}
+
+.quiz-form.js-ready .quiz-step { display: none; }
+.quiz-form.js-ready .quiz-step.is-active { display: block; }
+.quiz-form:not(.js-ready) .quiz-progress,
+.quiz-form:not(.js-ready) .quiz-step-label {
+  display: none;
+}
+
+.quiz-step {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quiz-step legend {
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0;
+  margin: 0 0 1rem;
+  color: var(--color-text);
+}
+
+.quiz-optional {
+  font-weight: 400;
+  color: var(--color-text-soft);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.quiz-options {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.quiz-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+/* :has() ger den tydliga kort-highlighten i moderna webbläsare, men själva
+   radioknappen/kryssrutan lämnas synlig (inte dold) så valet alltid syns
+   även om :has() inte skulle stödjas. */
+.quiz-option:has(input:checked) {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+.quiz-option:has(input:focus-visible) {
+  outline: 2px solid var(--color-primary-dark);
+  outline-offset: 2px;
+}
+
+.quiz-option input {
+  accent-color: var(--color-primary);
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+.quiz-option-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.quiz-option-title { font-weight: 600; color: var(--color-text); }
+.quiz-option-desc { font-size: 0.88rem; color: var(--color-text-soft); }
+
+.quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.quiz-nav--start { justify-content: flex-end; }
+
+.quiz-summary {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.quiz-summary strong { color: var(--color-primary-dark); }
+
+.quiz-summary-note {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--color-text-soft);
+}
+
 /* ---------- 8) Footer ---------- */
 .site-footer {
   background: var(--color-dark);
